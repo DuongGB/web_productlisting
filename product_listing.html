@@ -1,561 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Product list</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product list</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        } 
-        
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-        }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
 
-        a{
-            text-decoration: none;
-            padding: 0 14px;
-            display: flex;
-            justify-content: center;    
-            align-items: center;
-        }
-        /* banner */
-        .banner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            height: 64px;
-        }
+            a {
+                text-decoration: none;
+                padding: 0 14px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            /* banner */
+            /* .banner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                height: 64px;
+            }
 
-        .banner .left{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
+            .banner .left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
 
-        .item a{
-            font-size: 14px;
-            color: #000;
-            height: 64px;
-        }
+            .item a {
+                font-size: 14px;
+                color: #000;
+                height: 64px;
+            }
 
-        .right {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        
-        .banner form input {
-            height: 32px;
-        }
-        /* slider */
-        
-        .slider img {
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        .slider .text {
-            position: absolute;
-            z-index: 1;
-            font-size: 30px;
-            max-width: 445px;
-            top: 180px;
-            left: 130px;
-        }
-        /* content */
-        
-        .content {
-            margin-top: 62px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .content-main{
-            width: 1200px;
-        }
+            .right {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
 
-        .menu {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 52px;
-            margin-bottom: 60px;
-        }
-        
-        .menu-left {
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: green;
-        }
-        
-        .menu-left .item a{
-            font-size: 20px;
-            color: green;
-            height: 52px;
-        }
+            .banner form input {
+                height: 32px;
+            } */
+            /* slider */
 
-        .search {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-        
-        .search input {
-            height: 40px;
-        }
-        
-        .search span {
-            padding: 16px 24px;
-            background-color: rgba(0, 0, 0, .05);
-            border-radius: 4px;
-            margin-left: 20px;
-        }
-        
-        .products {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        
-        .product-item img {
-            width: 262px;
-            height: 336px;
-        }
+            /* .slider img {
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            */
 
-        .product-item span{
-            font-size: 30px;
-            font-weight: 700;
-        }
+            .slider .text {
+                /* position: absolute; */
+                z-index: 1;
+                font-size: 30px;
+                max-width: 445px;
+                top: 180px;
+                left: 130px;
+            }
+            /* content */
 
-        .product-item{
-            position: relative;
-        }
+            /* .content {
+                margin-top: 62px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .content-main {
+                width: 1200px;
+            }
 
-        .product-item .decription{
-            background-color: rgb(244 163 11 / 68%);
-            position:absolute;
-            top: 8px;
-            right: 8px;
-            border-radius: 24px;
-        }
+            .menu {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 52px;
+                margin-bottom: 60px;
+            }
 
-        .decription span{
-            color: rgb(131, 89, 10);
-            font-size: 14px;
-            display: inline-block;
-            padding: 6px;
-        }
+            .menu-left {
+                height: 52px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                color: green;
+            }
 
-        .product-item__buy{
-            display: flex;
-            justify-content: space-between;
-        }
+            .menu-left .item a {
+                font-size: 20px;
+                color: green;
+                height: 52px;
+            }
 
-        .price > span:nth-last-of-type(1) {
-            font-size: 20px;
-            color: #dadada;
-        }
+            .search {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+            }
 
-        .cart img{
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-        }
+            .search input {
+                height: 40px;
+            }
 
-        .pagenumber{
-            margin-top: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .pagenumber div{
-            color: #dadada;
-            padding: 12px;
-            border-radius: 16px;
-            margin: 0 16px;
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        /* Footer */
-        .footer{
-            background-color: #1d2128;
-            color: #c5c8cd;
-            display: flex;
-            justify-content: space-around;
-            margin-top: 100px;
-        }
-        
-        .item{
-            margin: 100px 0;
-        }
+            .search span {
+                padding: 16px 24px;
+                background-color: rgba(0, 0, 0, 0.05);
+                border-radius: 4px;
+                margin-left: 20px;
+            }
 
-        .about,
-        .help,
-        .contact{
-            height: 240px;
-        }
+            .products {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
 
-        .about div,
-        .help div,
-        .contact div{
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
-        }
+            .product-item img {
+                width: 262px;
+                height: 336px;
+            }
 
-        .btn-language{
-            border: 2px solid #a9acb2;
-            border-radius: 4px;
-            padding: 10px;
-            text-align: center;
-        }
+            .product-item span {
+                font-size: 30px;
+                font-weight: 700;
+            }
 
-        .social input{
-            width: 300px;
-            height: 50px;
-            background: transparent;
-            outline: none;
-            border: 2px solid #585d66;
-            border-radius: 8px;
-            font-size: 20px;
-            color: #d8dbe0;
-        }
+            .product-item {
+                position: relative;
+            }
 
-        .social-input span{
-            height: 50px;
-            background-color: #459d7a;
-            padding: 16px;
-            border-radius: 8px;
-        }
+            .product-item .decription {
+                background-color: rgb(244 163 11 / 68%);
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                border-radius: 24px;
+            }
 
-        .social-input h2{
-            margin-bottom: 20px;
-        }
+            .decription span {
+                color: rgb(131, 89, 10);
+                font-size: 14px;
+                display: inline-block;
+                padding: 6px;
+            }
 
-        .social-input p{
-            margin-bottom: 12px;
-        }
-        
-        .social-link{
-            padding: 24px 0;
-        }
+            .product-item__buy {
+                display: flex;
+                justify-content: space-between;
+            }
 
-        .social-link img{
-            padding: 4px;
-        }
-    </style>
-</head>
+            .price > span:nth-last-of-type(1) {
+                font-size: 20px;
+                color: #dadada;
+            }
 
-<body>
-    <div class="app">
-        <div class="banner">
-            <div class="left">
-                <div class="item"><a href="">Shop</a></div>
-                <div class="item"><a href="">Offers</a></div>
-                <div class="item"><a href="">Our story</a></div>
-                <div class="item"><a href="">Blog</a></div>
+            .cart img {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+            }
+
+            .pagenumber {
+                margin-top: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            */
+            .pagenumber div {
+                color: #dadada;
+                padding: 12px;
+                border-radius: 16px;
+                margin: 0 16px;
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+            /* Footer */
+            .footer {
+                background-color: #1d2128;
+                color: #c5c8cd;
+                display: flex;
+                justify-content: space-around;
+                margin-top: 100px;
+            }
+
+            .item {
+                margin: 100px 0;
+            }
+
+            .about,
+            .help,
+            .contact {
+                height: 240px;
+            }
+
+            .about div,
+            .help div,
+            .contact div {
+                padding: 10px 20px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .btn-language {
+                border: 2px solid #a9acb2;
+                border-radius: 4px;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .social input {
+                width: 300px;
+                height: 50px;
+                background: transparent;
+                outline: none;
+                border: 2px solid #585d66;
+                border-radius: 8px;
+                font-size: 20px;
+                color: #d8dbe0;
+            }
+
+            .social-input span {
+                height: 50px;
+                background-color: #459d7a;
+                padding: 16px;
+                border-radius: 8px;
+            }
+
+            .social-input h2 {
+                margin-bottom: 20px;
+            }
+
+            .social-input p {
+                margin-bottom: 12px;
+            }
+
+            .social-link {
+                padding: 24px 0;
+            }
+
+            .social-link img {
+                padding: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="app">
+            <div class="container nav justify-content-around">
+                <ul class="nav">
+                    <div class="nav-item">
+                        <a class="nav-link text-dark" href="">Shop</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link text-dark" href="">Offers</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link text-dark" href="">Our story</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link text-dark" href="">Blog</a>
+                    </div>
+                </ul>
+                <div class="logo">
+                    <img src="./Image 1 (21).png" alt="" class="logo" />
+                </div>
+                <form class="right" action="">
+                    <input
+                        type="search"
+                        name=""
+                        id=""
+                        placeholder="Search product..."
+                    />
+                    <img src="./Button 1 (1).png" alt="" />
+                    <img src="./Button 1.png" alt="" />
+                </form>
             </div>
-            <div class="logo">
-                <img src="./Image 1 (21).png" alt="" class="logo">
+            <div class="slider">
+                <div class="text position-absolute">
+                    <h2>Gift for your skin</h2>
+                    <p>
+                        Aliquip fugiat ipsum nostrud ex et eu incididunt quis
+                        minim dolore excepteur voluptate
+                    </p>
+                </div>
+                <img src="./Image 1.png" alt="" />
             </div>
-            <form class="right" action="">
-                <input type="search" name="" id="" placeholder="Search product...">
-                <img src="./Button 1 (1).png" alt="">
-                <img src="./Button 1.png" alt="">
-            </form>
+            <div class="content">
+                <div class="content-main container">
+                    <div
+                        class="menu nav d-flex justify-content-between align-items-center"
+                    >
+                        <div class="menu-left nav">
+                            <div class="item nav-item">
+                                <a class="nav-link text-dark" href=""
+                                    >All Product</a
+                                >
+                            </div>
+                            <div class="item nav-item">
+                                <a class="nav-link text-dark" href="">Face</a>
+                            </div>
+                            <div class="item nav-item">
+                                <a class="nav-link text-dark" href="">Body</a>
+                            </div>
+                        </div>
+                        <form class="search">
+                            <input
+                                type="search"
+                                name=""
+                                id=""
+                                placeholder="Search product..."
+                            />
+                            <span>Sort by</span>
+                        </form>
+                    </div>
+                    <div class="products d-flex">
+                        <div class="product-item">
+                            <img src="./Image 1 (1).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>Best-seller</span>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (2).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>Best-seller</span>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (3).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>Best-seller</span>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (4).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>Best-seller</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="products d-flex">
+                        <div class="product-item">
+                            <img src="./Image 1 (5).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (6).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>New</span>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (7).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (8).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="products d-flex">
+                        <div class="product-item">
+                            <img src="./Image 1 (9).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>New</span>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (10).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (11).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="./Image 1 (12).png" alt="" />
+                            <h2>Product title</h2>
+                            <p>Labore sint ipsum dolore mollit</p>
+                            <div class="product-item__buy">
+                                <div class="price">
+                                    <span>$32</span>
+                                    <span>$31</span>
+                                </div>
+                                <div class="cart">
+                                    <img src="./Button 1 (2).png" alt="" />
+                                </div>
+                            </div>
+                            <div class="decription">
+                                <span>New</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="pagenumber nav d-flex align-items-center justify-content-center"
+                >
+                    <img src="./Button 1 (5).png" alt="" />
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <img src="./Button 1 (6).png" alt="" />
+                </div>
+            </div>
+            <div class="footer conatiner d-flex flex-column">
+                <div class="footer item d-flex justify-content-around">
+                    <div class="about">
+                        <div><h2>About</h2></div>
+                        <div>Home</div>
+                        <div>Shop</div>
+                        <div>Our story</div>
+                        <div>Blogs</div>
+                        <div class="btn-language">English</div>
+                    </div>
+                    <div class="help">
+                        <div><h2>Help</h2></div>
+                        <div>Shipping & Returns</div>
+                        <div>Track Order</div>
+                        <div>FAQs</div>
+                    </div>
+                    <div class="contact">
+                        <div><h2>Contact</h2></div>
+                        <div>Phone:</div>
+                        <div>(+1) 123 456 7893</div>
+                        <div>Email:</div>
+                        <div>name@email.com</div>
+                    </div>
+                </div>
+                <div
+                    class="social item d-flex flex-column justify-content-between"
+                >
+                    <div class="social-input">
+                        <h2>Receive new promotions</h2>
+                        <p>Duis ea tempor commodo amet reprehende</p>
+                        <input
+                            placeholder="Input your email"
+                            type="email"
+                            name=""
+                            id=""
+                        />
+                        <span>Subscribe</span>
+                    </div>
+                    <div class="social-link d-flex j">
+                        <img src="./Twitter 1.png" alt="" />
+                        <img src="./Facebook 1.png" alt="" />
+                        <img src="./LinkedIn 1.png" alt="" />
+                        <img src="./YouTube 1.png" alt="" />
+                    </div>
+                    <div class="social-text">
+                        <p>&#169; 2022 Brand, Inc. Privacy Terms Sitemap</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="slider">
-            <div class="text">
-                <h2>Gift for your skin</h2>
-                <p>Aliquip fugiat ipsum nostrud ex et eu incididunt quis minim dolore excepteur voluptate</p>
-            </div>
-            <img src="./Image 1.png" alt="">
-        </div>
-        <div class="content">
-            <div class="content-main">
-                <div class="menu">
-                    <div class="menu-left">                 
-                            <div class="item">
-                                <a href="">All Product</a>
-                            </div>
-                            <div class="item">
-                                <a href="">Face</a>
-                            </div>
-                            <div class="item">
-                                <a href="">Body</a>
-                            </div>
-                    </div>
-                    <form class="search">
-                        <input type="search" name="" id="" placeholder="Search product...">
-                        <span>Sort by</span>
-                    </form>
-            </div>
-            <div class="products">
-                    <div class="product-item">
-                        <img src="./Image 1 (1).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                        <div class="decription">
-                            <span>Best-seller</span>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (2).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                        <div class="decription">
-                            <span>Best-seller</span>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (3).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                        <div class="decription">
-                            <span>Best-seller</span>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (4).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                        <div class="decription">
-                            <span>Best-seller</span>
-                        </div>
-                    </div>
-            </div>
-            <div class="products">
-                    <div class="product-item">
-                        <img src="./Image 1 (5).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (6).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                        <div class="decription">
-                            <span>New</span>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (7).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img src="./Image 1 (8).png" alt="">
-                        <h2>Product title</h2>
-                        <p>Labore sint ipsum dolore mollit</p>
-                        <div class="product-item__buy">
-                            <div class="price">
-                                <span>$32</span>
-                                <span>$31</span>
-                            </div>
-                            <div class="cart">
-                                <img src="./Button 1 (2).png" alt="">
-                            </div>
-                        </div>
-                    </div>
-            </div>       
-            <div class="products">
-                <div class="product-item">
-                    <img src="./Image 1 (9).png" alt="">
-                    <h2>Product title</h2>
-                    <p>Labore sint ipsum dolore mollit</p>
-                    <div class="product-item__buy">
-                        <div class="price">
-                            <span>$32</span>
-                            <span>$31</span>
-                        </div>
-                        <div class="cart">
-                            <img src="./Button 1 (2).png" alt="">
-                        </div>
-                    </div>
-                    <div class="decription">
-                        <span>New</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <img src="./Image 1 (10).png" alt="">
-                    <h2>Product title</h2>
-                    <p>Labore sint ipsum dolore mollit</p>
-                    <div class="product-item__buy">
-                        <div class="price">
-                            <span>$32</span>
-                            <span>$31</span>
-                        </div>
-                        <div class="cart">
-                            <img src="./Button 1 (2).png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <img src="./Image 1 (11).png" alt="">
-                    <h2>Product title</h2>
-                    <p>Labore sint ipsum dolore mollit</p>
-                    <div class="product-item__buy">
-                        <div class="price">
-                            <span>$32</span>
-                            <span>$31</span>
-                        </div>
-                        <div class="cart">
-                            <img src="./Button 1 (2).png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <img src="./Image 1 (12).png" alt="">
-                    <h2>Product title</h2>
-                    <p>Labore sint ipsum dolore mollit</p>
-                    <div class="product-item__buy">
-                        <div class="price">
-                            <span>$32</span>
-                            <span>$31</span>
-                        </div>
-                        <div class="cart">
-                            <img src="./Button 1 (2).png" alt="">
-                        </div>
-                    </div>
-                    <div class="decription">
-                        <span>New</span>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="pagenumber">
-                <img src="./Button 1 (5).png" alt="">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <img src="./Button 1 (6).png" alt="">
-            </div>
-        </div>
-        <div class="footer">
-            <div class="footer item">
-                <div class="about">
-                    <div><h2>About</h2></div>
-                    <div>Home</div>
-                    <div>Shop</div>
-                    <div>Our story</div>
-                    <div>Blogs</div>
-                    <div class="btn-language">
-                        English
-                    </div>
-                </div>
-                <div class="help">
-                    <div><h2>Help</h2></div>
-                    <div>Shipping & Returns</div>
-                    <div>Track Order</div>
-                    <div>FAQs</div>
-                </div>
-                <div class="contact">
-                    <div><h2>Contact</h2></div>
-                    <div>Phone:</div>
-                    <div>(+1) 123 456 7893</div>
-                    <div>Email:</div>
-                    <div>name@email.com</div>
-                </div>
-            </div>
-            <div class="social item">
-                <div class="social-input">
-                    <h2>Receive new promotions</h2>
-                    <p>Duis ea tempor commodo amet reprehende</p>
-                    <input placeholder="Input your email" type="email" name="" id="">
-                    <span>Subscribe</span>                                                                
-                </div>
-                <div class="social-link">
-                    <img src="./Twitter 1.png" alt="">
-                    <img src="./Facebook 1.png" alt="">
-                    <img src="./LinkedIn 1.png" alt="">
-                    <img src="./YouTube 1.png" alt="">
-                </div>
-                <div class="social-text">
-                    <p>&#169; 2022 Brand, Inc. Privacy Terms Sitemap</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
+    </body>
 </html>
